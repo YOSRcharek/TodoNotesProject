@@ -45,17 +45,18 @@ Base de données utilisée : **SQLite**.
    - Notes: `http://127.0.0.1:8000/api/notes/`
    - JWT obtain: `POST http://127.0.0.1:8000/api/auth/login/` (username/password)
 
-## Utilisation rapide (Postman / cURL)
+## Utilisation rapide (Postman)
 - Obtenir token:
   ```bash
-  curl -X POST http://127.0.0.1:8000/api/auth/login/ -H "Content-Type: application/json" \
-    -d '{"username":"<user>", "password":"<pass>"}'
+   POST http://127.0.0.1:8000/api/auth/login/ 
+     "Content-Type: application/json" \
+    -d '{"username":"admin", "password":"admin"}'
   ```
   Réponse: `{ "access": "...", "refresh": "..." }`
 
 - Appeler API avec token:
   ```bash
-  curl -H "Authorization: Bearer <access_token>" http://127.0.0.1:8000/api/todos/
+  "Authorization: Bearer <access_token>" http://127.0.0.1:8000/api/todos/
   ```
 
 ## Notes d'architecture (résumé)
@@ -64,6 +65,3 @@ Base de données utilisée : **SQLite**.
 - Authentification JWT + Session supportée (settings)
 - Pattern: `ViewSet` + `DefaultRouter` pour garder l'API simple et RESTful
 
-## Remarques
-- Ce projet est livré pour évaluation technique. Changez `SECRET_KEY` en production.
-- Vous pouvez ajouter des tests, pagination, filtres, ou documentation OpenAPI si nécessaire.
